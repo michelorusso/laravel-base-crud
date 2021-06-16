@@ -11,7 +11,7 @@
                 @foreach ($comics as $comic)
                     
                 <div class="col-3">
-                    <div class="card" style="width: 18rem;">
+                    <div class="card" style="width: 18rem; text-align: center">
                         <img class="card-img-top" src="{{ $comic->poster }}" alt="{{ $comic->title }}">
                         <div class="card-body">
 
@@ -26,6 +26,13 @@
                               'comic' => $comic->id
                           ]) }}" class="btn btn-secondary" style="font-size: 13px">Edit Comic Info
                           </a>
+
+                          <form style="text-align: center" action="{{ route('comics.destroy', ['comic' => $comic->id]) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+
+                            <input type="submit" class="btn btn-danger" value="Delete">
+                            </form>
 
                         </div>
                       </div>
