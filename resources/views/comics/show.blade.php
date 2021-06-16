@@ -14,7 +14,7 @@
                     <p class="card-text">{{ $comic->description }}</p>
                     @endif
 
-                    <div class="card-text"><b>Price:</b>: {{ $comic->price }}</div>
+                    <div class="card-text"><b>Price:</b> {{ $comic->price }}</div>
 
                     <div class="card-text"><b>Submission date:</b>  {{ $comic->start_date }}</div>
                     

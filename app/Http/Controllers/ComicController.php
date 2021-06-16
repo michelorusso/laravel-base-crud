@@ -47,11 +47,16 @@ class ComicController extends Controller
         $form_data = $request->all();
 
         $comic = new Comic();
+
+        // long solution
         // $comic->title = $form_data['title'];
         // $comic->description = $form_data['description'];
         // $comic->poster = $form_data['poster'];
         // $comic->price = $form_data['price'];
         // $comic->start_date = $form_data['start_date'];
+
+        // short solution
+        // con queste operazioni massive ricordarsi di inserire nel model le colonne con fillable
         $comic->fill($form_data);
         $comic->save();
 
@@ -86,7 +91,13 @@ class ComicController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+
+        $data = [
+            'comic' => $comic
+        ];
+
+        return view('comics.edit', $data);
     }
 
     /**
@@ -98,7 +109,14 @@ class ComicController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate($this->getValidation());
+        
+        $form_data = $request->all();
+
+        $comic_to_modify = Comic::find($id);
+        $comic_to_modify->update($form_data);
+        
+        return redirect()->route('comics.show', ['comic' => $comic_to_modify->id]);
     }
 
     /**
@@ -112,6 +130,7 @@ class ComicController extends Controller
         //
     }
 
+    // creiamo noi una funzione con tutte le regole di validazione
     private function getValidation() {
         return [
             'title' => 'required|min:4|max:50',
