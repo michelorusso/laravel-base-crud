@@ -10,11 +10,11 @@
 
                 @foreach ($comics as $comic)
                     
-                <div class="col-4">
+                <div class="col-3">
                     <div class="card" style="width: 18rem;">
                         <img class="card-img-top" src="{{ $comic->poster }}" alt="{{ $comic->title }}">
                         <div class="card-body">
-                          <h5 class="card-title">{{ $comic->title }}</h5>
+                          <h5 class="card-title" style=" font-size: 13px" >{{ $comic->title }}</h5>
                           <a href="{{ route('comics.show', [
                               'comic' => $comic->id
                           ]) }}" class="btn btn-primary">Look Details</a>
