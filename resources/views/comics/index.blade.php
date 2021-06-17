@@ -31,7 +31,7 @@
                             @csrf
                             @method('DELETE')
 
-                            <input type="submit" class="btn btn-danger" value="Delete">
+                            <input type="submit" class="btn btn-danger" value="Delete" onClick="return confirm('are you sure you want to delete the comic?');">
                             </form>
 
                         </div>
